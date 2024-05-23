@@ -1,0 +1,21 @@
+{
+  "name": "to-do-list-v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:dev": "npx mocha -w *.test.js",
+    "test": "npx mocha *.test.js",
+    "test:cov": "npx nyc npx mocha *.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
+    "sinon": "^15.0.1",
+    "supertest": "^6.3.3"
+  }
+}
