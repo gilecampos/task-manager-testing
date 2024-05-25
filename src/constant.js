@@ -1,4 +1,4 @@
-const constants = {
+export const constants = {
   error: {
     id: {
       required: "The 'id' field is required.",
@@ -31,4 +31,3 @@ const constants = {
   },
 };
 
-module.exports = constants;
