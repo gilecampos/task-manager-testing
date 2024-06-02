@@ -1,4 +1,4 @@
-const {error} = require('./constant')
+const { error } = require('./constant')
 
 class Task {
   static async ToDoList(taskData) {
@@ -9,12 +9,11 @@ class Task {
     if(!validDescription.valid) throw new Error(validDescription.error)
     const validDueDate = this.validDate(task)
     if(!validDueDate.valid) throw new Error(validDueDate.error)
-
-    return task
+    return this.insertTask(task)
   }
 
   static validTitle(taskData) {
-    const title = taskData.title
+    const title = taskData.title;
 
     if(!title){
       return {
@@ -75,7 +74,6 @@ class Task {
   static validDate(taskData) {
     const dueDate = taskData.dueDate;
     const creationDate = taskData.creationDate;
-    
     if (!dueDate) {
       return {
         error: error.dueDate.required,
@@ -109,8 +107,29 @@ class Task {
   
     return { valid: true };
   }
-  
 
+  static insertTask(taskData) {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.push(taskData);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+    return {
+      status: 'success',
+      statusCode: 200,
+    }
+  }
+
+  static async deleteTask(id) {
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    const newTasks = id ? tasks.filter(task => task.id !== id) : tasks
+    localStorage.setItem('tasks', JSON.stringify(newTasks));
+    
+    return {
+      status: 'success',
+      statusCode: 200,
+      message: "Task has been deleted"
+    }
+  }
 }
 
 module.exports = Task
