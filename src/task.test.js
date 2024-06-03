@@ -10,11 +10,11 @@ const { faker } = require('@faker-js/faker');
 
 describe('Task', function() {
   
-  before(() => {
+  beforeEach(() => {
 
   });
 
-  after(function () {
+  afterEach(function () {
     sinon.restore()
   });
 
@@ -73,5 +73,57 @@ describe('Task', function() {
     const result = await Task.deleteTask(id)
     assert.deepStrictEqual(result, expected)
     
+  })
+  it('should return error when trying to delete invalid id', async () => {
+    const id = null;
+
+    const stub = sinon.stub(
+      Task,
+      Task.deleteTask.name
+    )
+  
+    stub
+      .withArgs(id)
+      .resolves({
+        status: 'error',
+        statusCode: 400,
+        message: "Invalid ID",
+      })
+
+    const expected = new Error({
+      status: 'error',
+      statusCode: 400,
+      message: "Invalid ID",
+    })
+
+    const result = await Task.deleteTask(id)
+    assert.rejects(result, expected)
+
+  })
+  it('should return error when trying to delete a non-existent task', async () => {
+    const id = faker.string.uuid();
+
+    const stub = sinon.stub(
+      Task,
+      Task.deleteTask.name
+    )
+  
+    stub
+      .withArgs(id)
+      .resolves({
+        status: 'error',
+        statusCode: 404,
+        message: "Task not found",
+      })
+
+    const expected = {
+      status: 'error',
+      statusCode: 404,
+      message: "Task not found",
+    }
+
+    const result = await Task.deleteTask(id)
+    assert.deepStrictEqual(result, expected)
+      
   })
 })
