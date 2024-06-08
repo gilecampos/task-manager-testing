@@ -8,7 +8,7 @@ const constants = {
       required: "The 'task title' field is required.",
       invalidCharacter: "Invalid character found in the 'task title' field.",
       tooShort: "The 'task title' field must be at least 3 characters long.",
-      tooLong: "The 'task title' field must not exceed 100 characters.",
+      tooLong: "The 'task title' field must not exceed 50 characters.",
     },
     description: {
       required: "The 'description' field is required.",
