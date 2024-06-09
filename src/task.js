@@ -1,6 +1,9 @@
-const { error } = require('./constant')
+// const { error } = require('./constant.js')
+import { constants } from './constant.js'
 
-class Task {
+const {error} = constants
+
+export class Task {
   static async ToDoList(taskData) {
     const task = await taskData;
     const validTitle = this.validTitle(task)
@@ -120,7 +123,9 @@ class Task {
   }
 
   static async deleteTask(id) {
-    if (!id) return { status: 'error', statusCotode: 400, message: 'Invalid ID' }
+    if (!id || id === null || id === undefined) {
+      return { status: 'error', statusCotode: 400, message: 'Invalid ID' }
+    }
 
     const tasks = JSON.parse(localStorage.getItem('tasks'));
     const taskExists = tasks.some(task => task.id === id);
@@ -140,4 +145,7 @@ class Task {
   }
 }
 
-module.exports = Task
+// module.exports = Task
+
+
+
