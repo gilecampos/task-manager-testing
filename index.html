@@ -25,20 +25,54 @@
       </h2>
 
       <div class="ml-2 -my-1 lg:hidden">
-        <button type="button" class="text-slate-500 w-8 h-8 flex items-center justify-center hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
-        data-js="toggle-modal-button">
+        <button type="button" class="text-slate-500 w-8 h-8 flex items-center justify-center hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300" data-js="toggle-modal-button">
           <img src="assets/img/menu.svg" alt="Icon">
         </button>
       </div>
     </div>
   </header>
 
-  <main class="container static">
+  <main class="container static p-4">
+
+    <div class="crea-task">
+      <h2 class="dark:text-slate-200 font-bold text-center text-2xl mb-4">
+        Create new task
+      </h2>
+      <form >
+        <label for="title-task" class="block dark:text-slate-200 font-bold mb-6">
+          Title
+          <input type="text" name="title-task" id="title-task"
+            class="block font-medium w-full border border-slate-800 focus:border-sky-500 rounded-xl py-2 px-4 mt-2 dark:bg-slate-800 dark:text-slate-400 dark:highlight-white/5 focus:outline-none"
+            placeholder="Enter the title"
+          >
+        </label>
+        <label for="description-task" class="block dark:text-slate-200 font-bold mb-4">
+          Description
+          <textarea name="description-task" id="description-task" class="block font-medium w-full border border-slate-800 focus:border-sky-500 rounded-xl py-2 px-4 mt-2 dark:bg-slate-800 dark:text-slate-400 dark:highlight-white/5 focus:outline-none"
+          placeholder="Enter the description" rows="5"></textarea>
+        </label>
+
+        <label for="due-date-task" class="block dark:text-slate-200 font-bold">
+          Deadline for completion
+          <input type="date" name="due-date-task" id="due-date-task"
+            class="block font-medium w-full border border-slate-800 focus:border-sky-500 rounded-xl py-2 px-4 mt-2 dark:bg-slate-800 dark:text-slate-400 dark:highlight-white/5 focus:outline-none"
+            placeholder="Enter the description"
+          >
+        </label>
+
+        <button type="submit"
+          class="mt-8 w-full bg-sky-500 hover:bg-sky-700 active:bg-sky-700 dark:text-slate-200 font-bold p-2 rounded-full"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
 
     <!-- BUTTON NEW TASK MOBILE -->
     <button type="button" class="lg:hidden absolute bottom-5 right-5 w-auto px-2 h-8 rounded-full dark:bg-slate-800 dark:text-slate-400 dark:highlight-white/5">
-      <p class="dark:text-slate-200 font-bold">Create New Task 
-        <span class="dark:text-sky-500">+</span> 
+      <p class="dark:text-slate-200 font-bold">
+        Create New Task
+        <span class="dark:text-sky-500">+</span>
       </p>
     </button>
   </main>
@@ -79,4 +113,5 @@
 
   <script type="module" src="src/app.js"></script>
 </body>
+
 </html>
