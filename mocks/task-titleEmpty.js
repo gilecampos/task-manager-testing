@@ -1,10 +1,8 @@
 const { faker } = require('@faker-js/faker');
-const titleEmpty = {
+export const titleEmpty = {
   id: faker.string.uuid(),
   title: '',
   description: 'Description task',
   dueDate: faker.date.future(),
   creationDate: new Date().toISOString(),
 }
-
-module.exports = titleEmpty
