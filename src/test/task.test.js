@@ -3,16 +3,18 @@ const supertest = require('supertest')
 const assert = require("assert")
 const {createSandbox} = require("sinon")
 const sinon = createSandbox()
-const { Task } = require('../task.js')
+const Task  = require('../task.js')
 const { error } = require('../constant.js')
 const { faker } = require('@faker-js/faker');
+let { LocalStorage } = require('node-localstorage')
+const localStorage = new LocalStorage('./stratch')  
+
 
 describe('Task', function() {
   
   beforeEach(() => {
-
   });
-
+  
   afterEach(function () {
     sinon.restore()
   });
@@ -21,22 +23,10 @@ describe('Task', function() {
     const content = {
       id: faker.string.uuid(),
       title: 'Title task',
-      description: 'Uma descrição pra lá de boa',
+      description: 'Umaasddsadsadsad',
       dueDate: faker.date.future().toISOString().split('T')[0],
       creationDate: new Date().toISOString(),
     }
-
-    const stub = sinon.stub(
-      Task,
-      Task.insertTask.name
-    )
-  
-    stub
-      .withArgs(content)
-      .resolves({
-        status: 'success',
-        statusCode: 200,
-      })
 
     const expected = {
       status: "success",
@@ -49,19 +39,6 @@ describe('Task', function() {
   })
   it('should delete a task into localStorage', async () => {
     const id = faker.string.uuid();
-
-    const stub = sinon.stub(
-      Task,
-      Task.deleteTask.name
-    )
-  
-    stub
-      .withArgs(id)
-      .resolves({
-        status: 'success',
-        statusCode: 200,
-        message: "Task has been deleted",
-      })
 
     const expected = {
       status: "success",
