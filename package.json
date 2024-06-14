@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
-    "test:dev": "npx mocha -w ./src/*.test.js",
+    "test:dev": "npx mocha -w ./src/test/*.test.js",
     "test": "npx mocha *.test.js",
     "test:cov": "npx nyc npx mocha *.test.js"
   },
