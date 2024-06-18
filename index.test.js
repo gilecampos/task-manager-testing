@@ -14,6 +14,7 @@ const mocks = {
   dueDateEmpty: require("./mocks/task-dueDateEmpty.js"),
   dueDateInvalid: require("./mocks/task-dueDateInvalid.js"),
   dueDatePast: require("./mocks/task-dueDatePast.js"),
+  validTask: require("./mocks/task-valid.js"),
 }
 
 ;(async () => {
@@ -76,6 +77,16 @@ const mocks = {
     const result = Task.ToDoList(mocks.dueDatePast)
     const expected = new Error(error.dueDate.pastDate);
     await assert.rejects(result, expected)
+  }
+
+  {
+    const result = await Task.ToDoList(mocks.validTask)
+    const expected = {
+      status: 'success',
+      statusCode: 200,
+    }
+
+    assert.deepStrictEqual(result, expected)
   }
 
 })()
