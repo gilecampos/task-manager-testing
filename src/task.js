@@ -3,32 +3,16 @@ let { LocalStorage } = require('node-localstorage')
 const localStorage = new LocalStorage('./stratch')
 // import { constants } from './constant.js'
 
-
 class Task {
   static async ToDoList(taskData) {
     const task = await taskData;
-    const validId = this.validUUID(task)
-    if (!validId.valid) throw new Error(validId.error)
     const validTitle = this.validTitle(task)
     if (!validTitle.valid) throw new Error(validTitle.error)
     const validDescription = this.validDescription(task)
     if (!validDescription.valid) throw new Error(validDescription.error)
     const validDueDate = this.validDate(task)
     if (!validDueDate.valid) throw new Error(validDueDate.error)
-    console.log(JSON.parse(localStorage.getItem('tasks')))
     return this.insertTask(task)
-  }
-
-  static validUUID(taskdata) {
-    const id = taskdata.id
-    if(!id) {
-      return {
-        valid: false,
-        error: error.id.required
-      }
-    }
-
-    return { valid: true }
   }
 
   static validTitle(taskData) {
