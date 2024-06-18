@@ -1,7 +1,7 @@
 const { error } = require('./constant.js')
 let { LocalStorage } = require('node-localstorage')
 const localStorage = new LocalStorage('./stratch')
-// import { constants } from './constant.js'
+const { faker } = require('@faker-js/faker');
 
 class Task {
   static async ToDoList(taskData) {
@@ -113,7 +113,7 @@ class Task {
 
   static insertTask(taskData) {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks.push(taskData);
+    tasks.push({...taskData, id: faker.string.uuid(), status: 'pending'});
     localStorage.setItem('tasks', JSON.stringify(tasks));
 
     return {
