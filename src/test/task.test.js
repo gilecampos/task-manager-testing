@@ -21,7 +21,6 @@ describe('Task', function() {
 
   it('should insert a task into localStorage', async () => {
     const content = {
-      id: faker.string.uuid(),
       title: 'Title task',
       description: 'Umaasddsadsadsad',
       dueDate: faker.date.future().toISOString().split('T')[0],
@@ -34,11 +33,11 @@ describe('Task', function() {
     }
 
     const result = await Task.ToDoList(content)
-    assert.deepStrictEqual(result, expected)
+    assert.deepStrictEqual(result, expected, 'Objects are not deeply strictly equal')
     
   })
   it('should delete a task into localStorage', async () => {
-    const id = faker.string.uuid();
+    const id = "60fe8939-dffa-4c39-8a1a-042981d28896";
 
     const expected = {
       status: "success",
@@ -47,24 +46,10 @@ describe('Task', function() {
     }
 
     const result = await Task.deleteTask(id)
-    assert.deepStrictEqual(result, expected)
-    
+    assert.deepStrictEqual(result, expected, 'Objects are not deeply strictly equal')
   })
   it('should return error when trying to delete invalid id', async () => {
     const id = null;
-
-    const stub = sinon.stub(
-      Task,
-      Task.deleteTask.name
-    )
-  
-    stub
-      .withArgs(id)
-      .resolves({
-        status: 'error',
-        statusCode: 400,
-        message: "Invalid ID",
-      })
 
     const expected = new Error({
       status: 'error',
@@ -79,19 +64,6 @@ describe('Task', function() {
   it('should return error when trying to delete a non-existent task', async () => {
     const id = faker.string.uuid();
 
-    const stub = sinon.stub(
-      Task,
-      Task.deleteTask.name
-    )
-  
-    stub
-      .withArgs(id)
-      .resolves({
-        status: 'error',
-        statusCode: 404,
-        message: "Task not found",
-      })
-
     const expected = {
       status: 'error',
       statusCode: 404,
@@ -100,6 +72,5 @@ describe('Task', function() {
 
     const result = await Task.deleteTask(id)
     assert.deepStrictEqual(result, expected)
-      
   })
 })
