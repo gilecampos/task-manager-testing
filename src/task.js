@@ -32,7 +32,7 @@ class Task {
       }
     }
 
-    if (title.length >= 100) {
+    if (title.length >= 50) {
       return {
         error: error.taskTitle.tooLong,
         valid: false,
